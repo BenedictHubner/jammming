@@ -1,6 +1,6 @@
 let accessToken;
 const clientID = "444d27318b99431db755affce47e6c84";
-const redirectURI = "http://sudden-destruction.surge.sh/";
+const redirectURI = "https://jammming-hubner-style.netlify.app/";
 
 
 const Spotify = {
