@@ -3,13 +3,16 @@ import './App.css';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { SearchResults } from '../SearchResults/SearchResults';
 import { Playlist } from '../Playlist/Playlist';
+import Spotify from '../../util/Spotify';
 
 export class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {searchResults: [{ name: "A1", id: 1 , album: "B1", artist: "C1", uri: "101"},
-                                  { name: "A2", id: 2 , album: "B2", artist: "C2", uri: "102"},
-                                  { name: "A3", id: 3 , album: "B3", artist: "C3", uri: "103"}],
+    this.state = {searchResults: [
+                                  // { name: "A1", id: 1 , album: "B1", artist: "C1", uri: "101"},
+                                  // { name: "A2", id: 2 , album: "B2", artist: "C2", uri: "102"},
+                                  // { name: "A3", id: 3 , album: "B3", artist: "C3", uri: "103"}
+                                  ],
                   playlistName: "Playlist",
                   playlistTracks: [{ name: "PA1", id: 4 , album: "PB1", artist: "PC1", uri: "104"},
                                    { name: "PA2", id: 5 , album: "PB2", artist: "PC2", uri: "105"},
@@ -71,7 +74,11 @@ export class App extends React.Component {
   }
 
   search(searchTerm) {
-    console.log(searchTerm);
+    Spotify.search(searchTerm).then(result =>
+      this.setState({
+        searchResults: result
+      })
+    )
   }
 }
 
