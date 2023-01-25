@@ -1,6 +1,6 @@
 let accessToken;
 const clientID = "444d27318b99431db755affce47e6c84";
-const redirectURI = "http://functional-hair.surge.sh/";
+const redirectURI = "http://sudden-destruction.surge.sh/";
 
 
 const Spotify = {
