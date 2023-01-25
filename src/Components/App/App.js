@@ -8,15 +8,9 @@ import Spotify from '../../util/Spotify';
 export class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {searchResults: [
-                                  // { name: "A1", id: 1 , album: "B1", artist: "C1", uri: "101"},
-                                  // { name: "A2", id: 2 , album: "B2", artist: "C2", uri: "102"},
-                                  // { name: "A3", id: 3 , album: "B3", artist: "C3", uri: "103"}
-                                  ],
-                  playlistName: "Playlist",
-                  playlistTracks: [{ name: "PA1", id: 4 , album: "PB1", artist: "PC1", uri: "104"},
-                                   { name: "PA2", id: 5 , album: "PB2", artist: "PC2", uri: "105"},
-                                   { name: "PA3", id: 6 , album: "PB3", artist: "PC3", uri: "106"}]};
+    this.state = {searchResults: [],
+                  playlistName: "New Playlist",
+                  playlistTracks: []};
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
@@ -70,7 +64,12 @@ export class App extends React.Component {
 
   savePlaylist() {
     const trackURIs = this.state.playlistTracks.map(track => track.uri);
-    // console.log(trackURIs);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
+      this.setState({
+        playlistName: "New Playlist",
+        playlistTracks: []
+      });
+    });
   }
 
   search(searchTerm) {
